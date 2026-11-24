@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Demostración accesible de una actividad breve sobre separación de residuos.">
+  <title>Separar residuos, decisión a decisión</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #172b4d;
+      background: #f3f7f4;
+      font-size: 16px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 1rem; }
+    .app { width: min(100%, 760px); background: #fff; border: 1px solid #d5e2d9; border-radius: 1.25rem; box-shadow: 0 1rem 2.5rem #173d2617; overflow: hidden; }
+    header { padding: 1rem 1.25rem; border-bottom: 1px solid #e3ebe5; display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+    .brand { margin: 0; font-size: .92rem; font-weight: 700; color: #245c3b; }
+    .counter { margin: 0; color: #4b5c52; font-size: .9rem; }
+    main { padding: clamp(1.25rem, 5vw, 3rem); min-height: 370px; }
+    .slide[hidden] { display: none; }
+    .eyebrow { color: #256640; text-transform: uppercase; letter-spacing: .08em; font-weight: 750; font-size: .78rem; }
+    h1, h2 { line-height: 1.2; margin: .6rem 0 1rem; }
+    h1 { font-size: clamp(2rem, 7vw, 3.4rem); }
+    h2 { font-size: clamp(1.45rem, 5vw, 2rem); }
+    p { line-height: 1.65; }
+    .lead { max-width: 58ch; font-size: 1.12rem; }
+    .callout { margin: 1.25rem 0; border-left: 5px solid #48935e; background: #eef7ef; padding: 1rem; border-radius: .4rem; }
+    .notice { color: #48594e; font-size: .93rem; }
+    .mandarin-figure { display: flex; align-items: center; gap: 1rem; margin: 1rem 0; }
+    .mandarin-figure svg { width: min(34vw, 180px); height: auto; flex: 0 0 auto; }
+    .question { border: 1px solid #dbe5dd; border-radius: .9rem; padding: 1rem; margin: 1.2rem 0; }
+    fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+    legend { font-weight: 750; line-height: 1.45; margin-bottom: .75rem; }
+    label.option { display: flex; align-items: flex-start; gap: .75rem; padding: .8rem; margin: .5rem 0; border: 1px solid #cbd8ce; border-radius: .6rem; cursor: pointer; }
+    label.option:hover { background: #f5faf6; }
+    input[type="radio"] { width: 1.15rem; height: 1.15rem; margin: .1rem 0 0; flex: 0 0 auto; accent-color: #256640; }
+    .feedback { min-height: 3rem; padding: .75rem; border-radius: .5rem; background: #f2f5f3; }
+    .feedback[data-state="correct"] { background: #e8f5eb; border-left: 4px solid #23743a; }
+    .feedback[data-state="incorrect"] { background: #fff2df; border-left: 4px solid #a34a00; }
+    nav { padding: 1rem 1.25rem; display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid #e3ebe5; }
+    button { border: 0; border-radius: .65rem; background: #245c3b; color: #fff; font: inherit; font-weight: 700; min-height: 2.8rem; padding: .65rem 1rem; cursor: pointer; }
+    button:hover { background: #19482d; }
+    button:disabled { background: #e4e9e5; color: #526056; cursor: not-allowed; }
+    button:focus-visible, input:focus-visible, label:focus-within { outline: 3px solid #bd6b00; outline-offset: 3px; }
+    .start { margin-top: 1rem; }
+    @media (max-width: 420px) {
+      body { padding: .4rem; }
+      .app { border-radius: .75rem; }
+      header, nav { padding: .8rem; }
+      main { min-height: 0; }
+      .question { padding: .8rem; }
+      label.option { padding: .7rem; }
+      .mandarin-figure { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <p class="brand">Aprendizaje práctico · Residuos</p>
+      <p class="counter" id="counter" aria-live="polite">Diapositiva 1 de 3</p>
+    </header>
+    <main>
+      <section class="slide" aria-labelledby="title">
+        <p class="eyebrow">Inicio</p>
+        <h1 id="title" tabindex="-1">Separar residuos, decisión a decisión</h1>
+        <p class="lead">Observa el material y su estado antes de decidir dónde va. En esta actividad verás un ejemplo y resolverás dos preguntas breves.</p>
+        <div class="callout"><strong>Objetivo:</strong> distinguir residuos orgánicos, envases reciclables y residuos de rechazo.</div>
+        <p class="notice">La actividad se entiende y se completa leyendo. No necesitas activar audio. Las reglas de separación pueden cambiar según tu localidad.</p>
+        <button class="start" type="button" data-next>Comenzar</button>
+      </section>
+
+      <section class="slide" aria-labelledby="mandarin-title" hidden>
+        <p class="eyebrow">Ejemplo · 2 de 3</p>
+        <h2 id="mandarin-title" tabindex="-1">¿Qué hacemos con una cáscara de mandarina?</h2>
+        <figure class="mandarin-figure">
+          <svg viewBox="0 0 180 130" role="img" aria-labelledby="mandarin-image-title mandarin-image-desc">
+            <title id="mandarin-image-title">Cáscara de mandarina</title>
+            <desc id="mandarin-image-desc">Ilustración naranja de una mandarina parcialmente pelada y su cáscara enrollada.</desc>
+            <path d="M57 29 C68 17 89 17 100 29 C122 30 138 48 137 69 C137 91 119 108 96 108 C73 108 55 91 55 69 C47 54 48 39 57 29 Z" fill="#f58a24" stroke="#8a4817" stroke-width="3"/>
+            <path d="M94 26 C91 20 93 15 99 12 C105 16 107 21 104 27" fill="#5b8f40" stroke="#426b30" stroke-width="2"/>
+            <path d="M57 48 C72 56 84 57 99 50 C112 44 124 47 135 55 M56 72 C75 64 91 66 105 76 C116 84 126 84 135 80" fill="none" stroke="#ffd277" stroke-width="3" stroke-linecap="round"/>
+            <path d="M52 34 C37 42 32 56 39 68 C45 79 58 79 66 73 C73 68 72 59 67 55 C62 51 56 54 56 59 C56 63 60 65 63 63" fill="none" stroke="#f4a12d" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M117 88 C127 93 135 103 133 113 C121 119 108 114 101 105" fill="none" stroke="#f4a12d" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="70" cy="38" r="1.5" fill="#ffe1a3"/><circle cx="117" cy="38" r="1.5" fill="#ffe1a3"/>
+            <circle cx="123" cy="68" r="1.5" fill="#ffe1a3"/><circle cx="75" cy="91" r="1.5" fill="#ffe1a3"/>
+          </svg>
+          <figcaption class="notice">La cáscara de mandarina es un residuo orgánico.</figcaption>
+        </figure>
+        <p>La cáscara de mandarina es un residuo orgánico. Si el servicio de tu localidad acepta restos de comida para compostaje o recolección orgánica, deposítala en esa categoría.</p>
+        <div class="callout"><strong>Decisión:</strong> orgánicos/compostables, cuando el sistema local lo permite.</div>
+        <p class="notice">Si no existe esa recolección, consulta la guía municipal y sigue la categoría indicada allí. No hay un color de contenedor universal.</p>
+      </section>
+
+      <section class="slide" aria-labelledby="practice-title" hidden>
+        <p class="eyebrow">Práctica · 3 de 3</p>
+        <h2 id="practice-title" tabindex="-1">Elige una categoría para cada residuo</h2>
+        <p>Selecciona una respuesta. Lee la retroalimentación que aparece debajo de cada pregunta.</p>
+
+        <div class="question" data-question data-correct="envases">
+          <fieldset>
+            <legend>1. Una botella de plástico vacía y limpia, ¿a qué categoría va?</legend>
+            <label class="option"><input type="radio" name="bottle" value="envases"> <span>Envases reciclables</span></label>
+            <label class="option"><input type="radio" name="bottle" value="organico"> <span>Residuos orgánicos</span></label>
+            <label class="option"><input type="radio" name="bottle" value="rechazo"> <span>Rechazo o resto</span></label>
+          </fieldset>
+          <p class="feedback" aria-live="polite">Retroalimentación aparecerá aquí.</p>
+        </div>
+
+        <div class="question" data-question data-correct="rechazo">
+          <fieldset>
+            <legend>2. Un pañuelo desechable usado, ¿a qué categoría va?</legend>
+            <label class="option"><input type="radio" name="tissue" value="papel"> <span>Papel y cartón reciclables</span></label>
+            <label class="option"><input type="radio" name="tissue" value="organico"> <span>Residuos orgánicos</span></label>
+            <label class="option"><input type="radio" name="tissue" value="rechazo"> <span>Rechazo o resto</span></label>
+          </fieldset>
+          <p class="feedback" aria-live="polite">Retroalimentación aparecerá aquí.</p>
+        </div>
+        <p class="notice">La botella debe estar vacía; consulta las reglas locales sobre tapas y envases. Un pañuelo usado no se recicla junto con papel limpio por estar contaminado.</p>
+      </section>
+    </main>
+    <nav aria-label="Navegación de la actividad">
+      <button id="previous" type="button" disabled>Anterior</button>
+      <button id="next" type="button">Siguiente</button>
+    </nav>
+  </div>
+  <script>
+    (() => {
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const counter = document.getElementById("counter");
+      const previous = document.getElementById("previous");
+      const next = document.getElementById("next");
+      let current = 0;
+
+      function showSlide(index) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+        slides.forEach((slide, i) => { slide.hidden = i !== current; });
+        counter.textContent = `Diapositiva ${current + 1} de ${slides.length}`;
+        previous.disabled = current === 0;
+        next.disabled = current === slides.length - 1;
+        if (current > 0) slides[current].querySelector("h1, h2").focus?.();
+      }
+
+      previous.addEventListener("click", () => showSlide(current - 1));
+      next.addEventListener("click", () => showSlide(current + 1));
+      document.querySelectorAll("[data-next]").forEach(button => {
+        button.addEventListener("click", () => showSlide(current + 1));
+      });
+
+      document.querySelectorAll("[data-question]").forEach(question => {
+        question.addEventListener("change", event => {
+          if (event.target.type !== "radio") return;
+          const correct = event.target.value === question.dataset.correct;
+          const feedback = question.querySelector(".feedback");
+          feedback.dataset.state = correct ? "correct" : "incorrect";
+          if (event.target.name === "bottle") {
+            if (correct) {
+              feedback.textContent = "Correcto. Una botella vacía y limpia suele ir con los envases reciclables; confirma las reglas locales.";
+            } else if (event.target.value === "organico") {
+              feedback.textContent = "No: una botella plástica limpia no es un residuo orgánico. Sepárala como envase reciclable si tu localidad la acepta; sigue las instrucciones locales.";
+            } else {
+              feedback.textContent = "No es la mejor categoría. Una botella vacía y limpia suele separarse como envase reciclable; confirma las reglas locales.";
+            }
+          } else {
+            feedback.textContent = correct
+              ? "Correcto. El pañuelo usado está contaminado y normalmente va a rechazo/resto, no al papel reciclable."
+              : "No es la mejor categoría. Al estar usado, el pañuelo no debe mezclarse con papel limpio; normalmente va a rechazo/resto.";
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
