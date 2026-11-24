@@ -68,4 +68,6 @@ Son indispensables: las tres pantallas en el orden pedido; el ejemplo guiado de 
 
 ## Alcance y limitaciones de entrega
 
-La demostración HTML es un complemento interactivo que permite revisar el contenido en un navegador; **no es un paquete H5P ni se puede importar como tal en Moodle**. La asignación requiere Course Presentation, pero no se pudo generar un `.h5p` válido con las bibliotecas de ejecución completas en este entorno. La guía Moodle explica qué bibliotecas y pasos hacen falta para recrear/exportar el recurso en una instancia Moodle compatible. Tampoco se publicó el material ni se generó un enlace: no se dispone de una instancia, cuenta ni acceso de publicación.
+La demostración HTML es un prototipo interactivo publicado en GitHub Pages: [abrir el sitio](https://alxsimbc-bit.github.io/actividad-clasificacion-residuos/). El repositorio público, que contiene el análisis y los archivos del prototipo, está en [GitHub](https://github.com/alxsimbc-bit/actividad-clasificacion-residuos/).
+
+**Limitación:** la demostración HTML no es un paquete H5P ni se puede importar como tal en Moodle. La asignación requiere Course Presentation, pero no se pudo generar un archivo `.h5p` válido con las bibliotecas de ejecución completas en este entorno. Para entregar un H5P nativo, hay que recrear/exportar la actividad desde una instancia Moodle compatible. La prueba individual indicada en la sección 3 también está pendiente de realizar.
